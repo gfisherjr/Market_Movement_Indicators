@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Financial Plot</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <!--
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <script src="https://unpkg.com/simple-statistics@5.0.0/dist/simple-statistics.min.js"></script>
+  -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.9.7/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+  <style>
+    body {
+      background-color: unset;
+    }
+    /*
+    table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+    */
+    th, td {
+      text-align: left;
+      padding: 8px;
+    }
+    tbody>tr:nth-child(even){background-color: #f2f2f2 !important}
+    tbody>tr:nth-child(odd){background-color: #fff !important}
+    /*
+    th {
+      background-color: #2f3439;
+      color: white;
+    }
+    */
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>
+        Copper Gold Ratio - S&P trade Signal
+        <span id="report-date" style="float: right;">1998 to 2020</span>
+      </h1>
+      <p></p>
+    </div>
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <h2>S&P vs Signal</h2>
+          </div>
+        </div>
+        <div id="plot"></div>
+      </div>
+    </div>
+
+    <!-- <div class="row">
+      <div class="col-md-12">
+        <table id="summary-table" class="table table-striped table-inverse">
+          <thead>
+            <tr>
+              <th>Date</th>
+              <th>Open</th>
+              <th>High</th>
+              <th>Low</th>
+              <th>Close</th>
+              <th>Volume</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div> -->
+
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-primary">
+          <div class="panel-body">
+            <h2>Copper Gold Ratio Signal</h2>
+          </div>
+        </div>
+        <div class="company">
+          The Copper Gold ratio is commonly referred to as an indicator of the macro economic  environemnt. 
+          Using the price relationship of these two metals (copper price / gold price) we can see that higher
+          values in the ratio would potentially indicate econcomic growth where lower values would indicate 
+          economic contraction. In building upon this idea I explored whether there was a relationship between
+          the pricing of the S&P 500 and the Copper Gold ration (CGr) and whether or not we could statistically
+          find signals for buying and selling the S&P 500 based on the relationship.
+
+          The original analysis invovled a data visualization to see if changes in the CGr occurred ahead of 
+          market moves in the S&P 500. The conclusion was that there were often movements in the ratio ahead of
+          market moves. The next step was to explore the numbers a bit deeper to filter out noise and potentially
+          identify a true signal of when to buy and or sell the S&P.
+
+          I examined the correlation of the S&P 500 daily price changes to the CGr daily change and mapped out these
+          over time in relationship to the their standard deviation over a 55 day rolling period.  The chart above 
+          contains "signals" for when the correlation was above or below two standard deviations. The rest of the noise
+          was filtered out. 
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="plots.js"></script>
+</body>
+</html>
