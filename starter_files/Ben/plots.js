@@ -15,43 +15,41 @@ function unpack(rows, index) {
     return row[index];
   });
 }
-
-d3.csv("Ben_Final_Data_df.csv").then(function(data) {
+​
+d3.csv("Ben_Final2_Data_df.csv").then(function(data) {
   //var dates = unpack(data.Dates, 1)
   var dates = []
   var sp500 = []
   var Z_Score = []
-  
-
+  // var filtersp500corr = []
+​
   data.forEach((d) => {
     dates.push(d.Date);
   })
   data.forEach((d) => {
-    sp500.push(d.Closing_Price);
+    sp500.push(d.Settle);
   })
   data.forEach((d) => {
     Z_Score.push(d.Z_Score);
   })
- 
- 
-  //console.log(data);
-
-  console.log(dates);
-  console.log(sp500);
-  console.log(Z_Score);
+​
+console.log(dates);
+console.log(sp500);
+console.log(Z_Score);
   
-  //console.log(data[i].Date);
-})
+  })
+​
 
 function buildPlot() {
   //var url = `https://www.quandl.com/api/v3/datasets/WIKI/AMZN.json?start_date=2017-01-01&end_date=2017-12-31&api_key=${apiKey}`;
   //var url = `https://www.quandl.com/api/v3/datasets/WIKI/AMZN.json?start_date=2017-01-01&end_date=2018-11-22&api_key=${apiKey}`;
-
-  d3.csv("Ben_Final_Data_df.csv").then(function(data) {
+​
+  d3.csv("Ben_Final2_Data_df.csv").then(function(data) {
     //var dates = unpack(data.Dates, 1)
     var dates = []
     var sp500 = []
     var Z_Score = []
+    // var filtersp500corr = []
   
     data.forEach((d) => {
       dates.push(d.Date);
@@ -62,12 +60,11 @@ function buildPlot() {
     data.forEach((d) => {
       Z_Score.push(d.Z_Score);
     })
-    
-    //console.log(data);
-  
+
     console.log(dates);
     console.log(sp500);
     console.log(Z_Score);
+    // console.log(filtersp500corr);
   
     //console.log(data[i].Date);
   
@@ -96,7 +93,7 @@ function buildPlot() {
           step: 'all',
       }],
     };
-
+​
     var trace1 = {
       type: "scatter",
       mode: "lines",
@@ -107,24 +104,23 @@ function buildPlot() {
         color: "red"
       }
     };
-
+​
     var trace2 = {
       type: "scatter",
       mode: "lines",
       name: name,
       x: dates,
-      y: Z_Score,
+      y: signal,
       yaxis: "y2",
       line: {
         color: "blue"
       }
     };
-
-
+​
     var data = [trace1, trace2];
-
+​
     var layout = {
-      title: `SP500 Closing Prices`,
+      title: `SP500 Closing Price vs Z_Score Correlation `,
       // autosize: true,
       // width: 500,
       height: 700,
@@ -140,21 +136,18 @@ function buildPlot() {
         side: "right"
       },
       yaxis2: {
-        title: 'Correlation Rolling Z-Score',
+        title: 'Correlation Rolling Z_Score',
         titlefont: {color: 'rgb(148, 103, 189)'},
         tickfont: {color: 'rgb(148, 103, 189)'},
         overlaying: 'y',
         side: 'left'
       },
-      showlegend: true
-    };
-
+​};
+  
+    });  
+​
     // Plotly - Making a Responsive Chart:
     // https://plotly.com/javascript/configuration-options/#making-a-responsive-chart
     Plotly.newPlot("plot", data, layout, {responsive: true});
 
-  });
-}
-
 buildPlot();
-//getMonthlyData();
