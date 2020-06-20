@@ -47,7 +47,6 @@ function updatePlotly() {
 // Call updatePlotly() when a change takes place to the DOM
 d3.selectAll("#selDataset").on("change", updatePlotly);
 
-
 function buildPlot_gary() {
   
   d3.csv("project_2_data_gary.csv").then(function(data) {
@@ -131,7 +130,7 @@ function buildPlot_gary() {
     var trace2 = {
       type: "scatter",
       mode: "lines",
-      name: name,
+      name: "6-3MoSP500Corr",
       x: dates,
       y: filtersp500corr,
       yaxis: "y2",
@@ -143,6 +142,7 @@ function buildPlot_gary() {
     // Candlestick Trace
     var trace1 = {
       type: "candlestick",
+      name: "SP500",
       x: dates,
       high: high,
       low: low,
@@ -153,9 +153,9 @@ function buildPlot_gary() {
     var data = [trace1, trace2];
 
     var layout = {
-      title: `SP500 closing prices`,
+      title: `S&P 500 vs Correlation Between 6Mo-3Mo Treasury Yields and S&P 500`,
       // autosize: true,
-      // width: 500,
+      // width: "100%",
       height: 700,
       xaxis: {
         rangeselector: selectorOptions,
@@ -169,13 +169,16 @@ function buildPlot_gary() {
         side: "right"
       },
       yaxis2: {
-        title: 'yaxis2 title',
-        titlefont: {color: 'rgb(148, 103, 189)'},
-        tickfont: {color: 'rgb(148, 103, 189)'},
+        title: '6Mo - 3Mo & SP500 Correlation',
         overlaying: 'y',
         side: 'left'
       },
-      showlegend: true
+      showlegend: true,
+      legend: {
+        x: 1,
+        xanchor: 'right',
+        y: 1.1
+      }
     };
 
     Plotly.newPlot("plot", data, layout, {responsive: true});
@@ -291,7 +294,7 @@ function buildPlot_bruce() {
     var trace1 = {
       type: "scatter",
       mode: "lines",
-      name: name,
+      name: "SP500",
       x: dates,
       y: sp500,
       line: {
@@ -302,7 +305,7 @@ function buildPlot_bruce() {
     var trace2 = {
       type: "scatter",
       mode: "lines",
-      name: name,
+      name: "Signal",
       x: dates,
       y: signal,
       yaxis: "y2",
@@ -314,7 +317,7 @@ function buildPlot_bruce() {
     var data = [trace1, trace2];
 
     var layout = {
-      title: `SP500 closing prices vs Signal`,
+      title: `S&P 500 Closing Prices vs Signal`,
       // autosize: true,
       // width: 500,
       height: 700,
@@ -331,13 +334,16 @@ function buildPlot_bruce() {
       },
       yaxis2: {
         title: 'Signal Std.',
-        titlefont: {color: 'rgb(148, 103, 189)'},
-        tickfont: {color: 'rgb(148, 103, 189)'},
         overlaying: 'y',
         side: 'left'
       },
 
-      showlegend: true
+      showlegend: true,
+      legend: {
+        x: 1,
+        xanchor: 'right',
+        y: 1.1
+      }
     };
 
     Plotly.newPlot("plot", data, layout, {responsive: true});
@@ -443,7 +449,7 @@ function buildPlot_ben() {
     var trace1 = {
       type: "scatter",
       mode: "lines",
-      name: name,
+      name: "SP500",
       x: dates,
       y: sp500,
       line: {
@@ -454,7 +460,7 @@ function buildPlot_ben() {
     var trace2 = {
       type: "scatter",
       mode: "lines",
-      name: name,
+      name: "Signal",
       x: dates,
       y: Z_Score,
       yaxis: "y2",
@@ -466,7 +472,7 @@ function buildPlot_ben() {
     var data = [trace1, trace2];
 
     var layout = {
-      title: `SP500 Closing Prices`,
+      title: `S&P 500 vs Correlation Rolling Z-Score`,
       // autosize: true,
       // width: 500,
       height: 700,
@@ -483,12 +489,15 @@ function buildPlot_ben() {
       },
       yaxis2: {
         title: 'Correlation Rolling Z-Score',
-        titlefont: {color: 'rgb(148, 103, 189)'},
-        tickfont: {color: 'rgb(148, 103, 189)'},
         overlaying: 'y',
         side: 'left'
       },
-      showlegend: true
+      showlegend: true,
+      legend: {
+        x: 1,
+        xanchor: 'right',
+        y: 1.1
+      }
     };
 
     Plotly.newPlot("plot", data, layout, {responsive: true});
