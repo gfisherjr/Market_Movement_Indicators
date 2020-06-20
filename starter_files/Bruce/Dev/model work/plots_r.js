@@ -18,11 +18,12 @@ function unpack(rows, index) {
   });
 }
 
-d3.csv("jun98tojun20.csv").then(function(data) {
+d3.csv("jun98tojun20B.csv").then(function(data) {
   //var dates = unpack(data.Dates, 1)
   var dates = []
   var sp500 = []
   var signal = []
+  var cap_growth = []
   // var filtersp500corr = []
 
   data.forEach((d) => {
@@ -34,16 +35,12 @@ d3.csv("jun98tojun20.csv").then(function(data) {
   data.forEach((d) => {
     signal.push(d.signal);
   })
-
-d3.csv("CGr_model_returns.csv").then(function(data){
-    var cap_growth = []
-
-  data.forEach((c) => {
-    cap_growth.push(c.Capital);
+  data.forEach((d) => {
+    cap_growth.push(d.Capital);
   })
 
-})
-  
+
+ 
   console.log(cap_growth);
   //console.log(data);
 
@@ -91,11 +88,12 @@ function buildPlot() {
   //var url = `https://www.quandl.com/api/v3/datasets/WIKI/AMZN.json?start_date=2017-01-01&end_date=2017-12-31&api_key=${apiKey}`;
   //var url = `https://www.quandl.com/api/v3/datasets/WIKI/AMZN.json?start_date=2017-01-01&end_date=2018-11-22&api_key=${apiKey}`;
 
-  d3.csv("jun98tojun20.csv").then(function(data) {
+  d3.csv("jun98tojun20B.csv").then(function(data) {
     //var dates = unpack(data.Dates, 1)
     var dates = []
     var sp500 = []
     var signal = []
+    var cap_growth = []
     // var filtersp500corr = []
   
     data.forEach((d) => {
@@ -107,15 +105,18 @@ function buildPlot() {
     data.forEach((d) => {
       signal.push(d.signal);
     })
+    data.forEach((d) => {
+      cap_growth.push(d.Capital);
+    })
     // data.forEach((d) => {
     //   filtersp500corr.push(d.filterSP500corr);
     // })new--------------
-  d3.csv("CGr_model_returns.csv").then(function(data) {
-    var cap_growth =[]
+  // d3.csv("CGr_model_returns.csv").then(function(data) {
+  //   var cap_growth =[]
     
-    data.forEach((c) => {
-      cap_growth.push(c.Capital );
-    })
+  //   data.forEach((c) => {
+  //     cap_growth.push(c.Capital );
+  //   })
     //end new-----------
     //console.log(data);
   
@@ -228,7 +229,7 @@ function buildPlot() {
         title: 'Capital',
         titlefont: {color: 'rgb(148, 103, 189)'},
         tickfont: {color: 'rgb(148, 103, 189)'},
-        overlaying: 'y',
+        overlaying: 'y1',
         side: 'left'
       },
       showlegend: true
@@ -239,7 +240,7 @@ function buildPlot() {
     Plotly.newPlot("plot", data, layout, {responsive: true});
 
   });
-});
 }
+
 buildPlot();
 // getMonthlyData();
