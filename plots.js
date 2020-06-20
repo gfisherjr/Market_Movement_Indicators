@@ -317,7 +317,7 @@ function buildPlot_bruce() {
     var data = [trace1, trace2];
 
     var layout = {
-      title: `S&P 500 Closing Prices vs Signal`,
+      title: `S&P 500 Closing Prices vs CGr Signal`,
       // autosize: true,
       // width: 500,
       height: 700,
