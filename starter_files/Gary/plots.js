@@ -32,11 +32,11 @@ function updatePlotly() {
   console.log(dataset);
 
   if (dataset === 'dataset1') {
-    buildPlot_gary();  
+    buildPlot_bruce();  
   }
 
   if (dataset === 'dataset2') {
-    buildPlot_bruce();
+    buildPlot_gary();
   }
 
   if (dataset === 'dataset3') {
@@ -186,7 +186,7 @@ function buildPlot_gary() {
   });
 }
 
-buildPlot_gary();
+// buildPlot_gary();
 
 //##############################################################
 d3.csv("jun98tojun20.csv").then(function(data) {
@@ -351,7 +351,7 @@ function buildPlot_bruce() {
   });
 };
 
-// buildPlot_bruce();
+buildPlot_bruce();
 
 
 //##################################################################
